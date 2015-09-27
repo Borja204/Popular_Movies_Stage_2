@@ -394,20 +394,22 @@ public class DetailActivityFragment extends Fragment {
             return null;
         return favoriteMovies;
     }
-    public void addFavorite( Movie movie) {
+    public void addFavorite(Movie movie) {
         ArrayList<Movie> favorites = loadFavorites();
         if (favorites == null) {
             favorites = new ArrayList<>();
         }
-        favorites.add(movie);
-        storeFavorites(favorites);
+        if (movie != null) {
+            favorites.add(movie);
+            storeFavorites(favorites);
+        }
     }
     public void removeFavorite(Movie movie) {
         ArrayList<Movie> favorites = loadFavorites();
         Movie movieToDelete = new Movie();
 
         //remove with the movie was not working
-        if (favorites != null) {
+        if (favorites != null && movie != null) {
             for (Movie m : favorites) {
                 if (m.getId() == movie.getId()) {
                     movieToDelete=m;
